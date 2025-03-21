@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "docker build -t idle-miner-bot ."
+    "build": "docker build -t idle-miner-bot .",
+    "run": "docker run idle-miner-bot"
   },
   "type": "module",
   "dependencies": {

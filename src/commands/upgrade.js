@@ -9,7 +9,7 @@ import {
 import { saveData, validate } from 'storelite2';
 import createErrorEmbed from '../utils/createErrorEmbed.js';
 import createMessageComponentCollector from '../utils/messageComponentCollector.js';
-import baseUpgrades from '../../config.json' with { type: "json" };
+import config from '../../config.json' with { type: "json" };
 
 const data = new SlashCommandBuilder()
   .setName('upgrade')
@@ -35,8 +35,8 @@ const execute = async (interaction, userData) => {
     .setColor('#e05644')
     .setTimestamp();
 
-  Object.keys(baseUpgrades).forEach((upgradeKey) => {
-    const upgrade = baseUpgrades[upgradeKey];
+  Object.keys(config.base_upgrades).forEach((upgradeKey) => {
+    const upgrade = config.base_upgrades[upgradeKey];
     const upgradeLevel = company.upgrades[upgradeKey]
       ? company.upgrades[upgradeKey]
       : 0;
@@ -49,8 +49,8 @@ const execute = async (interaction, userData) => {
 
   const row = new ActionRowBuilder();
 
-  Object.keys(baseUpgrades).forEach((upgradeKey) => {
-    const upgrade = baseUpgrades[upgradeKey];
+  Object.keys(config.base_upgrades).forEach((upgradeKey) => {
+    const upgrade = config.base_upgrades[upgradeKey];
 
     row.addComponents(
       new ButtonBuilder()
@@ -73,17 +73,17 @@ const execute = async (interaction, userData) => {
       (i) => i.user.id === interaction.user.id
     );
 
-    if (company.upgrades[i.customId] === baseUpgrades[i.customId].maxUpgrade)
+    if (company.upgrades[i.customId] === config.base_upgrades[i.customId].maxUpgrade)
       return i.reply({
-        content: 'This item is already at the maximum upgrade level.',
+        embeds: [createErrorEmbed('This item is already at the maximum upgrade level.')],
         flags: MessageFlags.Ephemeral,
       });
 
     const upgradeCost =
-      baseUpgrades[i.customId].basePrice * (company.upgrades[i.customId] + 1);
+      config.base_upgrades[i.customId].basePrice * (company.upgrades[i.customId] + 1);
     if (company.bank < upgradeCost)
       return i.reply({
-        content: `You need $${upgradeCost} to purchase this.`,
+        embeds: [createErrorEmbed(`You need $${upgradeCost.toLocaleString()} to purchase this.`)],
         flags: MessageFlags.Ephemeral,
       });
 
