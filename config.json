@@ -5,6 +5,13 @@
       "basePrice": 100,
       "maxUpgrade": 5,
       "incomeMultiplier": 0.5
+    },
+
+    "mining_speed": {
+      "name": "Mining Speed",
+      "basePrice": 200,
+      "maxUpgrade": 5,
+      "incomeMultiplier": 0.5
     }
   },
 
