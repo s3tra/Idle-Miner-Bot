@@ -2,8 +2,9 @@
   TODO:
   
   [LOW] Convert progress bars to custom emojis.
+  [LOW] Add other leaderboard options, such as company income.
   [MED] Add a character limit to company names.
-
+  
   [LOW] Make a create argument for getData() - storelite2.
 */
 

@@ -1,6 +1,6 @@
 FROM node:23
 
-WORKDIR /Github/Idle-Miner-Bot
+WORKDIR /github/Idle-Miner-Bot
 
 # Install app dependencies
 COPY package*.json ./
