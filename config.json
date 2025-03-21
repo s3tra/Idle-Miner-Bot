@@ -1,0 +1,8 @@
+{
+  "staff_efficiency": {
+    "name": "Staff Efficiency",
+    "basePrice": 100,
+    "maxUpgrade": 5,
+    "incomeMultiplier": 0.5
+  }
+}
