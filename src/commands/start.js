@@ -5,9 +5,9 @@ import {
   ButtonBuilder,
   ButtonStyle,
   MessageFlags,
-  ComponentType,
 } from 'discord.js';
 import { saveData, validate } from 'storelite2';
+import createErrorEmbed from '../utils/createErrorEmbed.js';
 import createMessageComponentCollector from '../utils/messageComponentCollector.js';
 import createMessageCollector from '../utils/messageCollector.js';
 
@@ -75,10 +75,15 @@ const execute = async (interaction, userData) => {
   const locationInteraction = await interaction.channel.send({
     embeds: [locationEmbed],
     components: [row],
+    fetchReply: true,
   });
 
   try {
-    const i = await createMessageComponentCollector(interaction);
+    const i = await createMessageComponentCollector(
+      locationInteraction,
+      locationInteraction,
+      (i) => i.user.id === interaction.user.id
+    );
     company.location = i.customId;
 
     await i.reply({
