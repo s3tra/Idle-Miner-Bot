@@ -1,8 +1,16 @@
 {
-  "staff_efficiency": {
-    "name": "Staff Efficiency",
-    "basePrice": 100,
-    "maxUpgrade": 5,
+  "base_upgrades": {
+    "staff_efficiency": {
+      "name": "Staff Efficiency",
+      "basePrice": 100,
+      "maxUpgrade": 5,
+      "incomeMultiplier": 0.5
+    }
+  },
+
+  "staff_upgrades": {
+    "basePrice": 500,
+    "maxUpgrade": 10,
     "incomeMultiplier": 0.5
   }
 }

@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import baseUpgrades from '../../config.json' with { type: "json" };
+import config from '../../config.json' with { type: "json" };
 
 const data = new SlashCommandBuilder()
   .setName('company')
@@ -12,7 +12,7 @@ const execute = async (interaction, userData) => {
   const upgrades = company.upgrades;
   if (upgrades) {
     Object.keys(upgrades).forEach((upgradeKey) => {
-      const upgrade = baseUpgrades[upgradeKey];
+      const upgrade = config.base_upgrades[upgradeKey];
       const upgradeLevel = company.upgrades[upgradeKey]
         ? company.upgrades[upgradeKey]
         : 0;
@@ -20,6 +20,9 @@ const execute = async (interaction, userData) => {
       incomeMultiplier += upgrade.incomeMultiplier * upgradeLevel;
     });
   }
+
+  const staff = company.staff;
+  if (staff) incomeMultiplier += config.staff_upgrades.incomeMultiplier * staff;
 
   const companyName = company?.name || 'Unknown';
   const companyLocation = company?.location || 'Unknown';
@@ -42,7 +45,7 @@ const execute = async (interaction, userData) => {
       },
       {
         name: 'Staff',
-        value: companyStaff,
+        value: companyStaff.toLocaleString(),
         inline: true,
       },
       {

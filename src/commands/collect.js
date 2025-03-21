@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, MessageFlags, EmbedBuilder } from 'discord.js';
 import { saveData, validate } from 'storelite2';
-import baseUpgrades from '../../config.json' with { type: "json" };
+import config from '../../config.json' with { type: "json" };
 import createErrorEmbed from '../utils/createErrorEmbed.js';
 
 const data = new SlashCommandBuilder()
@@ -19,7 +19,7 @@ const execute = async (interaction, userData) => {
   try {
     if (upgrades) {
       Object.keys(upgrades).forEach((upgradeKey) => {
-        const upgrade = baseUpgrades[upgradeKey];
+        const upgrade = config.base_upgrades[upgradeKey];
         const upgradeLevel = company.upgrades[upgradeKey]
           ? company.upgrades[upgradeKey]
           : 0;
@@ -28,6 +28,9 @@ const execute = async (interaction, userData) => {
       });
     }
 
+    const staff = company.staff;
+    if (staff) incomeMultiplier += config.staff_upgrades.incomeMultiplier * staff;
+    
     totalTime = Math.floor(Math.abs(company.lastCollection - date) / 60_000);
     totalEarnings = Math.floor(
       (company.income / 60) * totalTime * incomeMultiplier
