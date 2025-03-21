@@ -73,6 +73,8 @@ const execute = async (interaction, userData) => {
       (i) => i.user.id === interaction.user.id
     );
 
+    if (!company.upgrades[i.customId]) company.upgrades[i.customId] = 0;
+    
     if (company.upgrades[i.customId] === config.base_upgrades[i.customId].maxUpgrade)
       return i.reply({
         embeds: [createErrorEmbed('This item is already at the maximum upgrade level.')],
