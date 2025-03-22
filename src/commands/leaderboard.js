@@ -41,8 +41,8 @@ const generateSortedEmbed = (value, data) => {
 };
 
 const execute = async (interaction) => {
-  const data = await getData(true);
-  if (!data)
+  const allData = await getData(true);
+  if (!allData)
     return interaction.reply({
       embeds: [createErrorEmbed('Unable to locate data.')],
       flags: MessageFlags.Ephemeral,
@@ -66,7 +66,7 @@ const execute = async (interaction) => {
   const row = new ActionRowBuilder().addComponents(select);
 
   const value = 'bank';
-  const leaderboardEmbed = generateSortedEmbed(value, data);
+  const leaderboardEmbed = generateSortedEmbed(value, allData);
 
   const leaderboardInteraction = await interaction.reply({
     embeds: [leaderboardEmbed],
@@ -82,7 +82,7 @@ const execute = async (interaction) => {
     );
 
     const selected = i.values[0];
-    const leaderboardEmbed = generateSortedEmbed(selected, data);
+    const leaderboardEmbed = generateSortedEmbed(selected, allData);
 
     await leaderboardInteraction.resource.message.edit({
       embeds: [leaderboardEmbed],
