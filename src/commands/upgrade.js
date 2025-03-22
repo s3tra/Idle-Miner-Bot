@@ -63,7 +63,7 @@ const execute = async (interaction, userData) => {
   const upgradeInteraction = await interaction.reply({
     embeds: [upgradeEmbed],
     components: [row],
-    fetchReply: true,
+    withResponse: true,
   });
 
   try {

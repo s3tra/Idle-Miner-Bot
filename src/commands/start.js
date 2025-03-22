@@ -75,7 +75,7 @@ const execute = async (interaction, userData) => {
   const locationInteraction = await interaction.channel.send({
     embeds: [locationEmbed],
     components: [row],
-    fetchReply: true,
+    withResponse: true,
   });
 
   try {

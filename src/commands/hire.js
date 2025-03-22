@@ -40,7 +40,7 @@ const execute = async (interaction, userData) => {
   const hireInteraction = await interaction.reply({
     embeds: [hireEmbed],
     components: [row],
-    fetchReply: true,
+    withResponse: true,
   });
 
   try {
