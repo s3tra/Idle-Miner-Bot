@@ -36,7 +36,10 @@ const execute = async (interaction, userData) => {
   });
 
   try {
-    company.name = await createMessageCollector(interaction);
+    company.name = await createMessageCollector(
+      interaction,
+      (m) => m.author.id === interaction.user.id && m.content.length <= 25
+    );
   } catch (error) {
     return console.error(
       'An error occured while collecting the response:',
