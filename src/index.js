@@ -1,8 +1,8 @@
 /*
   TODO:
   
-  [LOW] Convert progress bars to custom emojis.
-  [MED] Add a character limit to company names.
+  [LOW] Redesign logo, banner, theme.
+  [LOW] Release 0.0.1
   
   [LOW] Make a create argument for getData() - storelite2.
 */
