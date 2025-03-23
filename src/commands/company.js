@@ -30,7 +30,7 @@ const execute = async (interaction, userData) => {
   const companyBank = company?.bank || '0';
   const companyIncome = company?.income || 'Unknown';
 
-  const embed = new EmbedBuilder()
+  const companyEmbed = new EmbedBuilder()
     .setTitle(company.name ? company.name : 'Unknown')
     .addFields([
       {
@@ -68,7 +68,7 @@ const execute = async (interaction, userData) => {
     .setTimestamp();
 
   await interaction.reply({
-    embeds: [embed],
+    embeds: [companyEmbed],
   });
 };
 
