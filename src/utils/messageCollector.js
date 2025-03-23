@@ -1,7 +1,7 @@
-const createMessageCollector = (interaction) => {
+const createMessageCollector = (interaction, filter) => {
   return new Promise((resolve, reject) => {
     const collector = interaction.channel.createMessageCollector({
-      filter: (m) => m.author.id === interaction.user.id,
+      filter: filter,
       max: 1,
       time: 15_000,
     });
