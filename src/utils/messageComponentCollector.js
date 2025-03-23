@@ -18,8 +18,11 @@ const createMessageComponentCollector = (interaction, reply, filter) => {
     });
 
     collector.on('end', async (collection, reason) => {
+      let message = reply;
+      if (reply.resource) message = reply.resource.message;
+
       const disabledRow = new ActionRowBuilder().addComponents(
-        ...reply.resource.message.components[0].components.map((component) => {
+        ...message.components[0].components.map((component) => {
           if (component.type === ComponentType.Button) {
             const button = new ButtonBuilder(component.data);
             button.setDisabled(true);
@@ -35,7 +38,7 @@ const createMessageComponentCollector = (interaction, reply, filter) => {
       );
 
       if (disabledRow.components.length > 0)
-        await reply.resource.message.edit({ components: [disabledRow] });
+        await message.edit({ components: [disabledRow] });
 
       if (reason == 'time') {
         reject('This interaction has expired.');
