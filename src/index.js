@@ -1,12 +1,3 @@
-/*
-  TODO:
-  
-  [LOW] Redesign logo, banner, theme.
-  [LOW] Release 0.0.1
-  
-  [LOW] Make a create argument for getData() - storelite2.
-*/
-
 import {
   Client,
   GatewayIntentBits,
