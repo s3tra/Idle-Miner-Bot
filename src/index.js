@@ -1,12 +1,3 @@
-/*
-  TODO:
-  
-  [LOW] Convert progress bars to custom emojis.
-  [MED] Add a character limit to company names.
-  
-  [LOW] Make a create argument for getData() - storelite2.
-*/
-
 import {
   Client,
   GatewayIntentBits,

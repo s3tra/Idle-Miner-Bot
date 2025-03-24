@@ -8,6 +8,8 @@ const data = new SlashCommandBuilder()
 
 const execute = async (interaction, userData) => {
   const company = userData.company;
+  if (!company.bank) company.bank = 0;
+
   const date = new Date().getTime();
   let totalTime = 5;
 
