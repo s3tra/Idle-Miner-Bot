@@ -1,4 +1,4 @@
-FROM node:23
+FROM node:23.10.0-alpine3.21
 
 WORKDIR /github/Idle-Miner-Bot
 
