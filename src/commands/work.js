@@ -27,7 +27,7 @@ const execute = async (interaction, userData) => {
     });
 
   userData.lastWork = date;
-  const income = Math.floor(Math.random() * 500);
+  const income = Math.floor(Math.random() * 1000);
 
   const workEmbed = new EmbedBuilder()
     .setTitle('Work')
